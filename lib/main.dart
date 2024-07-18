@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class FoodPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {},
-              icon: const Badge(child: Icon(Icons.shopping_bag_outlined)))
+              icon: const Badge(child: Icon(Iconsax.shopping_bag4)))
         ],
       ),
       body: GridView.builder(
