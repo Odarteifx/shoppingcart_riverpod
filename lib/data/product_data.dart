@@ -1,4 +1,5 @@
 import 'package:shoppingcart_riverpod/models/product_model.dart';
+import 'package:shoppingcart_riverpod/riverpod/product_riverpord.dart';
 
 List<Product> allProducts = [
  Product(id: 1, productname: 'Pizza', price: 150.00, image: 'assets/pizza.png') ,

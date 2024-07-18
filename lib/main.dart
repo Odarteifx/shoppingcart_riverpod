@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shoppingcart_riverpod/riverpod/product_riverpord.dart';
+import 'package:shoppingcart_riverpod/screens/cart.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -34,7 +35,11 @@ class FoodPage extends ConsumerWidget {
         title: const Text('Best Pick'),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Carts();
+                },));
+              },
               icon: const Badge(child: Icon(Iconsax.shopping_bag4)))
         ],
       ),
@@ -84,12 +89,12 @@ class FoodPage extends ConsumerWidget {
                 ),
               ),
               Positioned(
-                top: 165,
-                left: 125,
+                top: 170,
+                left: 130,
                   child: Center(
                     child: IconButton.filled(
                       padding: const EdgeInsets.all(1),
-                      visualDensity: const VisualDensity(horizontal: -2.5, vertical: -2.5),
+                      visualDensity: const VisualDensity(horizontal: -3.0, vertical: -3.0),
                         onPressed: () {}, icon: const Icon(
                           Iconsax.shopping_bag,
                           size: 15,
