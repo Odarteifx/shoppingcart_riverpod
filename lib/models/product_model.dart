@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-class Product {
+class Product{
   final int id;
   final String productname;
   final double price;
-  final Image image;
+  final String image;
 
   Product(
       {required this.id,
