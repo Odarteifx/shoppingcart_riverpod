@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shoppingcart_riverpod/models/product_model.dart';
+import 'package:shoppingcart_riverpod/riverpod/cart_notifier.dart';
 import 'package:shoppingcart_riverpod/screens/cart.dart';
 import 'package:shoppingcart_riverpod/riverpod/product_riverpod.dart';
 
@@ -30,17 +32,20 @@ class FoodPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allProducts = ref.watch(productsProvider);
+    final cartProduct = ref.watch(cartNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Best Pick'),
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Carts();
-                },));
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const Carts();
+                  },
+                ));
               },
-              icon: const Badge(child: Icon(Iconsax.shopping_bag4)))
+              icon: const Badge(child: Icon(Iconsax.shopping_cart)))
         ],
       ),
       body: GridView.builder(
@@ -89,16 +94,37 @@ class FoodPage extends ConsumerWidget {
                 ),
               ),
               Positioned(
-                top: 170,
-                left: 130,
+                  top: 170,
+                  left: 130,
                   child: Center(
-                    child: IconButton.filled(
-                      padding: const EdgeInsets.all(1),
-                      visualDensity: const VisualDensity(horizontal: -3.0, vertical: -3.0),
-                        onPressed: () {}, icon: const Icon(
-                          Iconsax.shopping_bag,
-                          size: 15,
-                          )),
+                    child: (cartProduct.contains(allProducts[index]))
+                        ? IconButton.filledTonal(
+                            padding: const EdgeInsets.all(1),
+                            visualDensity: const VisualDensity(
+                                horizontal: -3.0, vertical: -3.0),
+                            onPressed: () {
+                              ref
+                                  .read(cartNotifierProvider.notifier)
+                                  .removeProduct(allProducts[index]);
+                            },
+                            icon: const Icon(
+                              Iconsax.bag_tick,
+                              size: 15,
+                            ))
+                        : IconButton.filled(
+                            padding: const EdgeInsets.all(1),
+                            visualDensity: const VisualDensity(
+                                horizontal: -3.0, vertical: -3.0),
+                            onPressed: () {
+                              ref
+                                  .read<CartNotifier>(
+                                      cartNotifierProvider.notifier)
+                                  .addProduct(allProducts[index]);
+                            },
+                            icon: const Icon(
+                              Iconsax.shopping_bag,
+                              size: 15,
+                            )),
                   ))
             ],
           );

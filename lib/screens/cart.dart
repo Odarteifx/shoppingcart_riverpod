@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shoppingcart_riverpod/riverpod/product_riverpod.dart';
+import 'package:shoppingcart_riverpod/riverpod/cart_notifier.dart';
 
 class Carts extends ConsumerStatefulWidget {
   const Carts({super.key});
 
   @override
-  ConsumerState<Carts> createState() => _MyWidgetState();
+  ConsumerState<Carts> createState() => _CartsState();
 }
 
-class _MyWidgetState extends ConsumerState<Carts> {
+class _CartsState extends ConsumerState<Carts> {
   @override
   Widget build(BuildContext context) {
-    final cheapProducts = ref.watch(expeonsiveProducts);
+    final expensiveProducts = ref.watch(cartNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Cart'),
@@ -22,7 +22,7 @@ class _MyWidgetState extends ConsumerState<Carts> {
         child: Column(
           children: [
             Column(
-              children: cheapProducts.map((product) {
+              children: expensiveProducts.map((product) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 5),
                   child: Container(
