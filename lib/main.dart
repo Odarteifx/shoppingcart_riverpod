@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shoppingcart_riverpod/riverpod/product_riverpord.dart';
 import 'package:shoppingcart_riverpod/screens/cart.dart';
+import 'package:shoppingcart_riverpod/riverpod/product_riverpod.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -29,7 +29,7 @@ class FoodPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final allProducts = ref.watch(productsProvder);
+    final allProducts = ref.watch(productsProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Best Pick'),
