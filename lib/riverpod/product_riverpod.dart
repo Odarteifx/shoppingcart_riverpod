@@ -4,18 +4,16 @@ import 'package:shoppingcart_riverpod/models/product_model.dart';
 
 part 'product_riverpod.g.dart';
 
-
 // final expensiveProductsProvider = Provider((ref){
 //   return allProducts.where((p) => p.price > 90).toList();
 // });
 
-
 @riverpod
-List<Product> products(ProductsRef ref){
+List<Product> products(ProductsRef ref) {
   return allProducts;
 }
 
 @riverpod
-List<Product> expensiveProducts(ExpensiveProductsProviderRef ref){
- return allProducts.where((p) => p.price > 90).toList();
+List<Product> expensiveProducts(ExpensiveProductsProviderRef ref) {
+  return allProducts.where((p) => p.price > 90).toList();
 }
