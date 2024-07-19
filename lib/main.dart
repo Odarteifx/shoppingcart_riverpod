@@ -45,7 +45,10 @@ class FoodPage extends ConsumerWidget {
                   },
                 ));
               },
-              icon: const Badge(child: Icon(Iconsax.shopping_cart)))
+              icon:  Badge(
+                label: Text('${cartProduct.length}'),
+                child: const Icon(Iconsax.shopping_cart)
+                ))
         ],
       ),
       body: GridView.builder(
@@ -117,8 +120,7 @@ class FoodPage extends ConsumerWidget {
                                 horizontal: -3.0, vertical: -3.0),
                             onPressed: () {
                               ref
-                                  .read<CartNotifier>(
-                                      cartNotifierProvider.notifier)
+                                  .read(cartNotifierProvider.notifier)
                                   .addProduct(allProducts[index]);
                             },
                             icon: const Icon(
