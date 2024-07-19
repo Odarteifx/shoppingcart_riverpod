@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shoppingcart_riverpod/models/product_model.dart';
 import 'package:shoppingcart_riverpod/riverpod/cart_notifier.dart';
 import 'package:shoppingcart_riverpod/screens/cart.dart';
 import 'package:shoppingcart_riverpod/riverpod/product_riverpod.dart';

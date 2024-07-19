@@ -14,14 +14,17 @@ class _CartsState extends ConsumerState<Carts> {
   @override
   Widget build(BuildContext context) {
     final expensiveProducts = ref.watch(cartNotifierProvider);
+    final cartTotal = ref.watch(cartTotalProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Cart'),
         actions: [
           expensiveProducts.isNotEmpty
-              ? IconButton(onPressed: () {
-                ref.read(cartNotifierProvider.notifier).clearProducts();
-              }, icon: const Icon(Iconsax.trash))
+              ? IconButton(
+                  onPressed: () {
+                    ref.read(cartNotifierProvider.notifier).clearProducts();
+                  },
+                  icon: const Icon(Iconsax.trash))
               : IconButton(onPressed: () {}, icon: const Icon(Iconsax.add)),
         ],
       ),
@@ -45,23 +48,59 @@ class _CartsState extends ConsumerState<Carts> {
                       children: [
                         Image.asset(
                           product.image,
-                          height: 50,
+                          height: 55,
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Text(
                           product.productname,
-                          style: const TextStyle(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600
+                          ),
                         ),
                         const Expanded(child: SizedBox()),
-                        Text('GH₵${product.price.toStringAsFixed(2)}')
+                        Column(
+                          children: [
+                            Text(
+                              'GH₵${product.price.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w500
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  ref.read(cartNotifierProvider.notifier).removeProduct(product);
+                                },
+                                child: const Text(
+                                  'Remove',
+                                ))
+                          ],
+                        )
                       ],
                     ),
                   ),
                 );
               }).toList(),
             ),
+            const Expanded(child: SizedBox()),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Total:',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'GH₵${cartTotal.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),

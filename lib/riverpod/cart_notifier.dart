@@ -1,8 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shoppingcart_riverpod/models/product_model.dart';
-
 part 'cart_notifier.g.dart';
+
 @riverpod
 class CartNotifier extends _$CartNotifier {
   @override
@@ -27,3 +26,14 @@ class CartNotifier extends _$CartNotifier {
   }
 }
 
+@riverpod
+double cartTotal(ref){
+  final cartProducts = ref.watch(cartNotifierProvider);
+
+  double total = 0 ;
+
+  for (Product product in cartProducts) {
+    total += product.price;  
+  }
+    return total;
+}
