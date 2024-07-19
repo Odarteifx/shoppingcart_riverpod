@@ -1,7 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shoppingcart_riverpod/models/product_model.dart';
 
-class CartNotifier extends Notifier<Set<Product>> {
+part 'cart_notifier.g.dart';
+@riverpod
+class CartNotifier extends _$CartNotifier {
   @override
   Set<Product> build() {
     return {};
@@ -24,6 +27,3 @@ class CartNotifier extends Notifier<Set<Product>> {
   }
 }
 
-final cartNotifierProvider = NotifierProvider<CartNotifier, Set<Product>>(() {
-  return CartNotifier();
-});

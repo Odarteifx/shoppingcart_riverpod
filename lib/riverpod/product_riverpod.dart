@@ -13,7 +13,4 @@ List<Product> products(ProductsRef ref) {
   return allProducts;
 }
 
-@riverpod
-List<Product> expensiveProducts(ExpensiveProductsProviderRef ref) {
-  return allProducts.where((p) => p.price > 90).toList();
-}
+
